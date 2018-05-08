@@ -1,0 +1,30 @@
+### Multiple Linear Regression: Predicting House Prices
+from sklearn.linear_model import LinearRegression
+import numpy as np
+F, N = input().split(" ")
+F =int(F)
+N=int(N)
+x=[]
+y=[]
+pred_y =[]
+for i in range(N):
+    temp =input().split(" ")
+    temp1 = [float(j) for j in temp]
+    x.append(temp1[0:F])
+    y.append(temp1[-1])
+T = int(input())
+for i in range(T):
+    temp = input().split()
+    temp2 = [float(j) for j in temp]
+    pred_y.append(temp2)
+
+model =LinearRegression()
+x_train=np.array(x)
+y_train=np.array(y)
+res = model.fit(x,y)
+y_test = np.array(pred_y)
+
+pred_res=res.predict(pred_y)
+#print(pred_res[0])
+for i in pred_res:
+    print(str(round(float(i),2)))
