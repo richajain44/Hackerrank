@@ -1,0 +1,32 @@
+### Polynomial Regression: Office Prices
+import numpy as np
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+F, N = input().split()
+F = int(F)
+N = int(N)
+x_train=[]
+y_train=[]
+y_test=[]
+for i in range(N):
+    temp = input().split()
+    x_train.append([float(j) for j in temp[0:F]])
+    y_train.append(float(temp[-1]))
+
+T = int(input())
+for i in range(T):
+    temp = input().split()
+    y_test.append([float(j) for j in temp[0:]])
+
+#x_train = np.array(x_train)
+#y_train = np.array(y_train)
+#y_test = np.array(y_test)
+lin_regressor = LinearRegression()
+poly = PolynomialFeatures(degree=F)
+res_train = poly.fit_transform(x_train)
+res_test =poly.fit_transform(y_test) 
+
+lin_regressor.fit(res_train,y_train)
+y_pred = lin_regressor.predict(res_test)
+for i in y_pred:
+    print(round(i,2))
